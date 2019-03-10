@@ -82,4 +82,20 @@ function filterNumbers(arr, maxNumber) {
 
 filterNumbers([1, 4, 8, 1, 20], 5);
 
-// TASK 7 - 
+// TASK 7 - A function that returns object with min and max numbers from array of numbers.
+
+function minMax(arr) {
+  let object = {};
+   object.max = arr[1];
+   object.min = arr[0];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[0] > arr[i]) {
+      object.min = arr[i];
+    } else if (arr[1] < arr[i]) {
+      object.max = arr[i];
+    }
+  }
+  console.log(object);
+}
+
+minMax([1, 4, 8, 2, 20]); // { max: 20, min: 1 }
