@@ -112,3 +112,21 @@ function average(arr) {
 }
 
 average([1,4,2]); // 2.33
+
+// TASK 9 - A function which concats all first-nested arrays in one array (reduce was used)
+
+function concatFirstNestedArrays(arr) {
+  let concatenatedArrElementsr = [];
+  let reducer = (accum, number) => accum + ", " + number;
+  arr.forEach(element => {
+    concatenatedArrElementsr.push(element.reduce(reducer));
+  });
+  let resultArray = [];
+  let values = concatenatedArrElementsr.reduce(reducer).split(", ");
+  values.forEach(value => {
+    resultArray.push(+value);
+  });
+  console.log(resultArray);
+}
+// "resultArray" is array of numbers (not strings)
+concatFirstNestedArrays([[0, 1], [2, 3], [4, 5]]); // [0, 1, 2, 3, 4, 5]
