@@ -99,3 +99,16 @@ function minMax(arr) {
 }
 
 minMax([1, 4, 8, 2, 20]); // { max: 20, min: 1 }
+
+// TASK 8 - A function that returns average of numbers in array.
+
+function average(arr) {
+  let sum = 0;
+  arr.forEach(number => {
+    sum += number;
+  });
+  const arithmeticMean = sum / (arr.length);
+  console.log(arithmeticMean);
+}
+
+average([1,4,2]); // 2.33
