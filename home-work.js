@@ -34,7 +34,6 @@ function bombTimer(str, time) {
       setTimeout(() => console.log(str), 1000);
     }
   }, 1000);
-  
 }
 
 bombTimer('Boooom', 3);
@@ -44,7 +43,7 @@ bombTimer('Boooom', 3);
 let result = 1;
 function factorial(num) {
   debugger;
-  while (num > 0) {
+  while (num !== 0) {
     return num * factorial(num - 1);
   } if (num === 0) {
   	result = 0;
@@ -54,3 +53,5 @@ function factorial(num) {
 
 factorial(3);
 factorial(5);
+
+// TASK 5 - 
