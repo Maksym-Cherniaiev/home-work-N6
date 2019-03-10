@@ -54,4 +54,16 @@ function factorial(num) {
 factorial(3);
 factorial(5);
 
-// TASK 5 - 
+// TASK 5 - Implement function from task №3 (bombTimer) using recursion and setTimeout.
+
+const timeInterval = 1000;
+function bombTimer(str, time) {
+  console.log(time);
+  if (time !== 1) {
+    setTimeout(() => bombTimer(str, time - 1), timeInterval);
+  } else if (time === 1) {
+    setTimeout(() => console.log(str), timeInterval);
+  }
+}
+
+bombTimer("Boooom", 3);
