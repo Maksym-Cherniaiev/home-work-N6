@@ -1,7 +1,7 @@
 // TASK 1 - A function which prints str after n seconds.
 
 function printTimeout(str, n) {
-  let timeDelay = n * 1000;
+  const timeDelay = n * 1000;
   return setTimeout(() => console.log(str), timeDelay);
 }
 
@@ -116,17 +116,23 @@ average([1,4,2]); // 2.33
 // TASK 9 - A function which concats all first-nested arrays in one array (reduce was used)
 
 function concatFirstNestedArrays(arr) {
-  let concatenatedArrElementsr = [];
-  let reducer = (accum, number) => accum + ", " + number;
-  arr.forEach(element => {
-    concatenatedArrElementsr.push(element.reduce(reducer));
-  });
-  let resultArray = [];
-  let values = concatenatedArrElementsr.reduce(reducer).split(", ");
-  values.forEach(value => {
-    resultArray.push(+value);
-  });
-  console.log(resultArray);
+	console.log(arr.reduce((acc, elem) => [...acc, ...elem]));
 }
-// "resultArray" is array of numbers (not strings)
+
+// function concatFirstNestedArrays(arr) {
+//   let concatenatedArrElementsr = [];
+//   let reducer = (accum, number) => accum + ", " + number;
+//   arr.forEach(element => {
+//     concatenatedArrElementsr.push(element.reduce(reducer));
+//   });
+//   let resultArray = [];
+//   let values = concatenatedArrElementsr.reduce(reducer).split(", ");
+//   values.forEach(value => {
+//     resultArray.push(+value);
+//   });
+//   console.log(resultArray);
+// }
+
 concatFirstNestedArrays([[0, 1], [2, 3], [4, 5]]); // [0, 1, 2, 3, 4, 5]
+
+// TASK 10 - 
