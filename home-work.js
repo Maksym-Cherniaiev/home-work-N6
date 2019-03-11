@@ -135,4 +135,26 @@ function concatFirstNestedArrays(arr) {
 
 concatFirstNestedArrays([[0, 1], [2, 3], [4, 5]]); // [0, 1, 2, 3, 4, 5]
 
-// TASK 10 - 
+// TASK 10 - A function accepts array of users and returns object of users where key is user id and value user data.
+
+const users = [
+  { id: 1, name: 'John', birthday: '1999-2-12' },
+  { id: 2, name: 'Bill', birthday: '1999-1-19' },
+  { id: 3, name: 'Carol', birthday: '1999-0-11' },
+  { id: 4, name: 'Luce', birthday: '1999-2-22' }
+];
+// The embodiment of destructuring an object
+function usersToObject(users) {
+  let objectOfUsers = {};
+  ({...objectOfUsers} = [...users]);
+  console.log(objectOfUsers);
+}
+
+usersToObject(users);
+// {
+//  0: { id: 1, name: 'John', birthday: '1999-2-12' }
+//  1: { id: 2, name: 'Bill', birthday: '1999-1-19' }
+//  2: { id: 3, name: 'Carol', birthday: '1999-0-11' }
+//  3: { id: 4, name: 'Luce', birthday: '1999-2-22' }
+// };
+
