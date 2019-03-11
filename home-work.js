@@ -2,7 +2,10 @@
 
 function printTimeout(str, n) {
   const timeDelay = n * 1000;
-  return setTimeout(() => console.log(str), timeDelay);
+  const delayString = setTimeout(() => {
+    console.log(str);
+    clearTimeout(delayString);
+  }, timeDelay);
 }
 
 printTimeout("hop", 2);
@@ -31,7 +34,10 @@ function bombTimer(str, time) {
     time--;
     if (time === 0) {
       clearInterval(countDown);
-      setTimeout(() => console.log(str), 1000);
+      const delayString = setTimeout(() => {
+        console.log(str);
+        clearTimeout(delayString);
+      }, 1000);
     }
   }, 1000);
 }
@@ -60,9 +66,15 @@ const timeInterval = 1000;
 function bombTimer(str, time) {
   console.log(time);
   if (time !== 1) {
-    setTimeout(() => bombTimer(str, time - 1), timeInterval);
+    const timer = setTimeout(() => {
+      bombTimer(str, time - 1);
+      clearTimeout(timer);
+    }, timeInterval);
   } else if (time === 1) {
-    setTimeout(() => console.log(str), timeInterval);
+    const stringDelay = setTimeout(() => {
+      console.log(str);
+      clearTimeout(stringDelay);
+    }, timeInterval);
   }
 }
 
