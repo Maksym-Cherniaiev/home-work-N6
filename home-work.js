@@ -158,3 +158,46 @@ usersToObject(users);
 //  3: { id: 4, name: 'Luce', birthday: '1999-2-22' }
 // };
 
+// TASK 11 - A function returns array of users that have birthdays in a specific month.
+
+const users = [
+  { name: 'John', birthday: '1999-2-12' },
+  { name: 'Bill', birthday: '1999-1-19' },
+  { name: 'Carol', birthday: '1999-4-11' }, // In this line was a mistake ('1999-0-11'), replaced 0 with 4
+  { name: 'Luce', birthday: '1999-2-22' }
+];
+
+function filterUsersByMonth(users, month) {
+  users.forEach(user => {
+    let birthday = new Date(user.birthday);
+    if (birthday.getMonth() === month) {
+      console.log(user);
+    }
+  });
+}
+
+filterUsersByMonth(users, 0) // [{ name: 'Bill', birthday: '1999-1-19' }]
+
+// TASK 12 - A function returns name and age of users separated by comma that are older than 18.
+
+const users = [
+  { name: 'John', birthday: '1999-6-12' },
+  { name: 'Bill', birthday: '2005-5-19' },
+  { name: 'Carol', birthday: '2003-10-11' },
+  { name: 'Luce', birthday: '2000-11-22' }
+];
+
+function getAdultNames(users) {
+  let matureUsers = []; // mature users )))
+  const currentYear = new Date().getFullYear();
+  users.forEach(user => {
+    const userBirthYear = new Date(user.birthday).getFullYear();
+    const userAge = currentYear - userBirthYear;
+    if (userAge >= 18) {
+      matureUsers.push(`${user.name} ${userAge}`);
+    }
+  });
+  console.log(matureUsers.reduce((acc, elem) => (acc + ", " + elem)));
+}
+
+getAdultNames(users); // 'John 20, Luce 19'
