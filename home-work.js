@@ -29,7 +29,7 @@ sumAll(4);
 // TASK 3 - Timer.
 
 function bombTimer(str, time) {
-  let countDown = setInterval(() => {
+  const countDown = setInterval(() => {
     console.log(time);
     time--;
     if (time === 0) {
@@ -46,28 +46,24 @@ bombTimer('Boooom', 3);
 
 // TASK 4 - A function which returns factorial of number using recursion.
 
-let result = 1;
 function factorial(num) {
-  debugger;
   while (num !== 0) {
     return num * factorial(num - 1);
   } if (num === 0) {
-    result = 0;
     return 1;
   }
 }
 
-factorial(3);
-factorial(5);
+console.log(factorial(3));
+console.log(factorial(5));
 
 // TASK 5 - Implement function from task №3 (bombTimer) using recursion and setTimeout.
 
-const timeInterval = 1000;
-function bombTimer(str, time) {
+function bombTimer(str, time, timeInterval) {
   console.log(time);
   if (time !== 1) {
     const timer = setTimeout(() => {
-      bombTimer(str, time - 1);
+      bombTimer(str, time - 1, timeInterval);
       clearTimeout(timer);
     }, timeInterval);
   } else if (time === 1) {
@@ -78,13 +74,13 @@ function bombTimer(str, time) {
   }
 }
 
-bombTimer("Boooom", 3);
+bombTimer("Boooom", 3, 1000);
 
 // TASK 6 - Function returns new array with numbers not higher than maxNumber.
 
 function filterNumbers(arr, maxNumber) {
   let newArr = [];
-  arr.map(number => {
+  arr.filter(number => {
     if (number < maxNumber) {
       newArr.push(number);
     }
