@@ -15,10 +15,10 @@ printTimeout("hop", 2);
 let sum = 0;
 function sumAll(n) {
   sum += n;
-	if (n > 0) {
+  if (n > 0) {
     sumAll(n-1);
   } else {
-  	console.log(sum);
+    console.log(sum);
     sum = 0;
   }
 }
@@ -52,8 +52,8 @@ function factorial(num) {
   while (num !== 0) {
     return num * factorial(num - 1);
   } if (num === 0) {
-  	result = 0;
-  	return 1;
+    result = 0;
+    return 1;
   }
 }
 
