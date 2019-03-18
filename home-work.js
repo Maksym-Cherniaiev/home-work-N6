@@ -79,13 +79,8 @@ bombTimer("Boooom", 3, 1000);
 // TASK 6 - Function returns new array with numbers not higher than maxNumber.
 
 function filterNumbers(arr, maxNumber) {
-  let newArr = [];
-  arr.filter(number => {
-    if (number < maxNumber) {
-      newArr.push(number);
-    }
-  });
-  console.log(newArr);
+  const newArr = arr.filter(number => number < maxNumber);
+  return newArr;
 }
 
 filterNumbers([1, 4, 8, 1, 20], 5);
