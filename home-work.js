@@ -1,32 +1,36 @@
 // TASK 1 - A function which prints str after n seconds.
 
-function printTimeout(str, n) {
+async function printTimeout(str, n) {
   const timeDelay = n * 1000;
-  const delayString = setTimeout(() => {
-    console.log(str);
-    clearTimeout(delayString);
-  }, timeDelay);
+  const promise = await new Promise(function(resolve, reject) {
+    const printStr = setTimeout(() => {
+      clearTimeout(printStr);
+      resolve(str);
+    }, timeDelay);
+  });
+  console.log(str);
+  return promise;
 }
 
 printTimeout("hop", 2);
 
 // TASK 2 - A function which returns sum of all numbers from 1 to n using recursion.
 
-let sum = 0;
-function sumAll(n) {
+function sumAll(n, sum = 0) {
   sum += n;
   if (n > 0) {
-    sumAll(n-1);
+    return sumAll(n-1, sum);
   } else {
-    console.log(sum);
-    sum = 0;
+    return sum;
   }
 }
 
-sumAll(2);
-sumAll(4);
+console.log(sumAll(2));
+console.log(sumAll(4));
 
 // TASK 3 - Timer.
+
+
 
 function bombTimer(str, time) {
   const countDown = setInterval(() => {
@@ -38,6 +42,7 @@ function bombTimer(str, time) {
         console.log(str);
         clearTimeout(delayString);
       }, 1000);
+      return str;
     }
   }, 1000);
 }
@@ -60,22 +65,22 @@ console.log(factorial(5));
 // TASK 5 - Implement function from task №3 (bombTimer) using recursion and setTimeout.
 
 function bombTimer(str, time, timeInterval) {
-  console.log(time);
-  if (time !== 1) {
+  if (time !== 0) {
     const timer = setTimeout(() => {
-      bombTimer(str, time - 1, timeInterval);
+      console.log(time);
       clearTimeout(timer);
+      bombTimer(str, time - 1, timeInterval);
     }, timeInterval);
-  } else if (time === 1) {
+  } else if (time === 0) {
     const stringDelay = setTimeout(() => {
-      console.log(str);
       clearTimeout(stringDelay);
+      console.log(str);
     }, timeInterval);
   }
+  return str;
 }
 
 bombTimer("Boooom", 3, 1000);
-
 // TASK 6 - Function returns new array with numbers not higher than maxNumber.
 
 function filterNumbers(arr, maxNumber) {
@@ -83,7 +88,7 @@ function filterNumbers(arr, maxNumber) {
   return newArr;
 }
 
-filterNumbers([1, 4, 8, 1, 20], 5);
+console.log(filterNumbers([1, 4, 8, 1, 20], 5));
 
 // TASK 7 - A function that returns object with min and max numbers from array of numbers.
 
@@ -98,10 +103,10 @@ function minMax(arr) {
       object.max = arr[i];
     }
   }
-  console.log(object);
+  return object;
 }
 
-minMax([1, 4, 8, 2, 20]); // { max: 20, min: 1 }
+console.log(minMax([1, 4, 8, 2, 20])); // { max: 20, min: 1 }
 
 // TASK 8 - A function that returns average of numbers in array.
 
@@ -111,15 +116,15 @@ function average(arr) {
     sum += number;
   });
   const arithmeticMean = sum / (arr.length);
-  console.log(arithmeticMean);
+  return arithmeticMean;
 }
 
-average([1,4,2]); // 2.33
+console.log(average([1,4,2]));
 
 // TASK 9 - A function which concats all first-nested arrays in one array (reduce was used)
 
 function concatFirstNestedArrays(arr) {
-	console.log(arr.reduce((acc, elem) => [...acc, ...elem]));
+  return arr.reduce((acc, elem) => [...acc, ...elem]);
 }
 
 // function concatFirstNestedArrays(arr) {
@@ -133,10 +138,10 @@ function concatFirstNestedArrays(arr) {
 //   values.forEach(value => {
 //     resultArray.push(+value);
 //   });
-//   console.log(resultArray);
+//   return resultArray;
 // }
 
-concatFirstNestedArrays([[0, 1], [2, 3], [4, 5]]); // [0, 1, 2, 3, 4, 5]
+console.log(concatFirstNestedArrays([[0, 1], [2, 3], [4, 5]])); // [0, 1, 2, 3, 4, 5]
 
 // TASK 10 - A function accepts array of users and returns object of users where key is user id and value user data.
 
@@ -150,10 +155,10 @@ const users = [
 function usersToObject(users) {
   let objectOfUsers = {};
   ({...objectOfUsers} = [...users]);
-  console.log(objectOfUsers);
+  return objectOfUsers;
 }
 
-usersToObject(users);
+console.log(usersToObject(users));
 // {
 //  0: { id: 1, name: 'John', birthday: '1999-2-12' }
 //  1: { id: 2, name: 'Bill', birthday: '1999-1-19' }
@@ -171,15 +176,17 @@ const users = [
 ];
 
 function filterUsersByMonth(users, month) {
+  let neededUser = "";
   users.forEach(user => {
     let birthday = new Date(user.birthday);
     if (birthday.getMonth() === month) {
-      console.log(user);
+      neededUser = user;
     }
   });
+  return neededUser;
 }
 
-filterUsersByMonth(users, 0) // [{ name: 'Bill', birthday: '1999-1-19' }]
+console.log(filterUsersByMonth(users, 0)); // [{ name: 'Bill', birthday: '1999-1-19' }]
 
 // TASK 12 - A function returns name and age of users separated by comma that are older than 18.
 
@@ -200,7 +207,7 @@ function getAdultNames(users) {
       matureUsers.push(`${user.name} ${userAge}`);
     }
   });
-  console.log(matureUsers.reduce((acc, elem) => (acc + ", " + elem)));
+  return matureUsers.reduce((acc, elem) => (acc + ", " + elem));
 }
 
-getAdultNames(users); // 'John 20, Luce 19'
+console.log(getAdultNames(users)); // 'John 20, Luce 19'
