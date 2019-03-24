@@ -52,9 +52,9 @@ bombTimer('Boooom', 3);
 // TASK 4 - A function which returns factorial of number using recursion.
 
 function factorial(num) {
-  while (num !== 0) {
+  if (num !== 0) {
     return num * factorial(num - 1);
-  } if (num === 0) {
+  } else {
     return 1;
   }
 }
@@ -112,9 +112,7 @@ console.log(minMax([1, 4, 8, 2, 20])); // { max: 20, min: 1 }
 
 function average(arr) {
   let sum = 0;
-  arr.forEach(number => {
-    sum += number;
-  });
+  arr.forEach(number => sum += number);
   const arithmeticMean = sum / (arr.length);
   return arithmeticMean;
 }
@@ -151,19 +149,32 @@ const users = [
   { id: 3, name: 'Carol', birthday: '1999-0-11' },
   { id: 4, name: 'Luce', birthday: '1999-2-22' }
 ];
-// The embodiment of destructuring an object
+// --normal
 function usersToObject(users) {
   let objectOfUsers = {};
-  ({...objectOfUsers} = [...users]);
+  for (let i = 0; i < users.length; i++) {
+    objectOfUsers[i + 1] = users[i];
+  }
   return objectOfUsers;
 }
 
 console.log(usersToObject(users));
+
+// -- recursion
+function usersToObject(users, i = 0, obj = {}) {
+  obj[i + 1] = users[i];
+  if (i < users.length - 1) {
+    usersToObject(users, i + 1, obj);
+  }
+  return obj;
+}
+
+console.log(usersToObject(users));
 // {
-//  0: { id: 1, name: 'John', birthday: '1999-2-12' }
-//  1: { id: 2, name: 'Bill', birthday: '1999-1-19' }
-//  2: { id: 3, name: 'Carol', birthday: '1999-0-11' }
-//  3: { id: 4, name: 'Luce', birthday: '1999-2-22' }
+//  1: { id: 1, name: 'John', birthday: '1999-2-12' }
+//  2: { id: 2, name: 'Bill', birthday: '1999-1-19' }
+//  3: { id: 3, name: 'Carol', birthday: '1999-0-11' }
+//  4: { id: 4, name: 'Luce', birthday: '1999-2-22' }
 // };
 
 // TASK 11 - A function returns array of users that have birthdays in a specific month.
